@@ -382,12 +382,14 @@
             if (!search) return alertAndUnlock('No query provided!', 'search');
 
             const query = new URLSearchParams();
-            query.set('x-algolia-agent', encodeURIComponent('Algolia for vanilla JavaScript 3.22.1'));
-            query.set('x-algolia-application-id', 'XW7SBCT9V6');
-            query.set('x-algolia-api-key', '6bfb5abee4dcd8cea8f0ca1ca085c2b3');
+            query.set('x-algolia-agent', encodeURIComponent('Algolia for JavaScript (4.8.4); Browser'));
 
             const resp = await fetch(`https://xw7sbct9v6-dsn.algolia.net/1/indexes/products/query?${query}`, {
                 method: 'POST',
+		headers: {
+		    'x-algolia-api-key': '6b5e76b49705eb9f51a06d3c82f7acee',
+		    'x-algolia-application-id': 'XW7SBCT9V6'
+		}
                 body: JSON.stringify({
                     params: `query=${encodeURIComponent(search.value)}&hitsPerPage=50&facets=*`
                 })
