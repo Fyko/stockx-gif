@@ -1,9 +1,10 @@
 package handler
 
 import (
-	"github.com/fyko/stockx-gif/next/pkg/util/algolia"
-	"github.com/fyko/stockx-gif/next/pkg/util/gifutil"
-	"github.com/fyko/stockx-gif/next/pkg/util/stockx"
+	"stockx-gif-next/internal/algolia"
+	"stockx-gif-next/internal/gifutil"
+	"stockx-gif-next/internal/stockx"
+
 	"github.com/gofiber/fiber/v2"
 )
 

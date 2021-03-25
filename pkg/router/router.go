@@ -1,7 +1,8 @@
 package router
 
 import (
-	"github.com/fyko/stockx-gif/next/pkg/handler"
+	"stockx-gif-next/pkg/handler"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/compress"
 	"github.com/gofiber/fiber/v2/middleware/cors"

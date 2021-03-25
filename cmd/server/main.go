@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/fyko/stockx-gif/next/pkg/router"
+	"stockx-gif-next/pkg/router"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/logger"

@@ -1,4 +1,4 @@
-module github.com/fyko/stockx-gif/next
+module stockx-gif-next
 
 go 1.13
 

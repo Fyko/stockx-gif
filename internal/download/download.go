@@ -9,7 +9,7 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/fyko/stockx-gif/next/pkg/logger"
+	"stockx-gif-next/pkg/logger"
 )
 
 var log = logger.CreateLogger()

@@ -5,8 +5,8 @@ import (
 	"image/gif"
 	"strings"
 
-	"github.com/fyko/stockx-gif/next/pkg/logger"
-	"github.com/fyko/stockx-gif/next/pkg/util/download"
+	"stockx-gif-next/internal/download"
+	"stockx-gif-next/pkg/logger"
 )
 
 var log = logger.CreateLogger()
