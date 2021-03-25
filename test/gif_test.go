@@ -6,7 +6,7 @@ import (
 	"github.com/fyko/stockx-gif/next/pkg/util/gifutil"
 )
 
-var _urls = []string{
+var urls = []string{
 	"https://stockx-360.imgix.net/adidas-Yeezy-Boost-350-V2-Synth/Images/adidas-Yeezy-Boost-350-V2-Synth/Lv2/img01.jpg?w=1280&fm=jpg",
 	"https://stockx-360.imgix.net/adidas-Yeezy-Boost-350-V2-Synth/Images/adidas-Yeezy-Boost-350-V2-Synth/Lv2/img02.jpg?w=1280&fm=jpg",
 	"https://stockx-360.imgix.net/adidas-Yeezy-Boost-350-V2-Synth/Images/adidas-Yeezy-Boost-350-V2-Synth/Lv2/img03.jpg?w=1280&fm=jpg",
@@ -47,6 +47,6 @@ var _urls = []string{
 
 func BenchmarkWriteGIF(b *testing.B) {
 	for n := 0; n < b.N; n++ {
-		gifutil.WriteGIF(_urls)
+		gifutil.WriteGIF(urls)
 	}
 }
