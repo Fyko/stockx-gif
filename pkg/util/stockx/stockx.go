@@ -20,6 +20,7 @@ func FetchStockXProductData(id string) (*StockXProductResponse, error) {
 		log.Errorf("An error occurred when fetching StockX: %v", err)
 		return nil, err
 	}
+	defer res.Body.Close()
 
 	if res.StatusCode != 200 {
 		log.Errorf("The StockX request returned %v", res.Status)

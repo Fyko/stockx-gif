@@ -50,6 +50,7 @@ func DoAlgoliaQuery(query string) ([]TruncatedHit, error) {
 		log.Errorf("An error occurred when fetching Algolia: %v", err)
 		return nil, err
 	}
+	defer res.Body.Close()
 
 	var payload = new(AlgolaQueryResponse)
 	decoder := json.NewDecoder(res.Body)
