@@ -57,6 +57,7 @@ func DoAlgoliaQuery(query string) ([]TruncatedHit, error) {
 
 	if err != nil {
 		log.Errorf("An error occurred when decoding Algolia data: %v", err)
+		return nil, err
 	}
 
 	return TruncateResponse(*payload), nil
