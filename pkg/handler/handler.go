@@ -36,6 +36,10 @@ func GenerateGIF(c *fiber.Ctx) error {
 		return err
 	}
 
+	if len(product.Product.Media.The360) == 0 {
+		return c.SendStatus(409)
+	}
+
 	images := gifutil.Prepare360Images(product.Product.Media.The360, options.Preview)
 
 	gif, err := gifutil.WriteGIF(images)

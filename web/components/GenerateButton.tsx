@@ -33,6 +33,7 @@ export function GenerateButton({ icon: _icon, content: _content }: { icon: IconP
 		}
 
 		const query = await queryAlgolia(test.groups.slug);
+
 		if (!query.length) {
 			cleanup();
 			return toast.error('Product not found!');
@@ -40,6 +41,10 @@ export function GenerateButton({ icon: _icon, content: _content }: { icon: IconP
 
 		const hit = query[0];
 		const gif = await generateGif(hit.id);
+		if (gif.status === 409) {
+			cleanup()
+			return toast.error('The product does not have 360 image support!');
+		}
 
 		const url = URL.createObjectURL(await gif.blob());
 		const a = document.createElement('a');

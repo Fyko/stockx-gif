@@ -40,6 +40,10 @@ export function PreviewButton({ icon: _icon, content: _content }: { icon: IconPr
 
 		const hit = query[0];
 		const gif = await generateGif(hit.id, true);
+		if (gif.status === 409) {
+			cleanup()
+			return toast.error('The product does not have 360 image support!');
+		}
 
 		const url = URL.createObjectURL(await gif.blob());
 		const a = document.createElement('a');
