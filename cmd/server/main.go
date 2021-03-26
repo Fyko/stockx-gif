@@ -7,6 +7,7 @@ import (
 
 	"stockx-gif-next/pkg/router"
 
+	"github.com/ansrivas/fiberprometheus/v2"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 )
@@ -23,6 +24,9 @@ func main() {
 	app.Use(logger.New(logger.Config{
 		TimeZone: "America/Denver",
 	}))
+	prometheus := fiberprometheus.New("stockx_gif")
+	prometheus.RegisterAt(app, "/api/metrics")
+	app.Use(prometheus.Middleware)
 
 	router.SetupRoutes(app)
 
