@@ -1,0 +1,16 @@
+{
+	"extends": ["marine/prettier/node", "marine/prettier/react"],
+	"parserOptions": {
+		"project": "./tsconfig.eslint.json"
+	},
+	"rules": {
+		"@typescript-eslint/naming-convention": "off",
+		"react/react-in-jsx-scope": "off",
+		"react/jsx-filename-extension": [
+			1,
+			{
+				"extensions": [".tsx"]
+			}
+		]
+	}
+}
