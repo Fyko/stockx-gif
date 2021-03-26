@@ -1,0 +1,11 @@
+version: '3.7'
+
+services:
+  api:
+    build:
+      context: .
+    restart: unless-stopped
+    environment:
+      - PORT=2319
+    ports:
+      - 2319:2319

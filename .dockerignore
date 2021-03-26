@@ -1,0 +1,8 @@
+/.dockerignore
+/.git
+/.gitignore
+/.gitattributes
+/Dockerfile
+/web
+/.vscode
+/test
