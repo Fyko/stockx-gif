@@ -40,7 +40,19 @@ export default function Home() {
 				<GenerateButton icon={faRocket} content={'Generate GIF'} />
 			</div>
 			<div className="p-5 rounded-md bg-gradient-to-tr from-gray-800 to-gray-700 space-y-4 shadow-md mt-10">
-				<p className="text-sm">Developer&apos;s Note:</p>
+				<p className="text-sm">
+					<u>Usage:</u>
+				</p>
+				<p className="text-sm">
+					Input the URL to a StockX product in the textbox above.
+				</p>
+				<p className="text-sm">
+					To generate a preview, click the Generate Preview button and the resulting GIF will be smaller.
+				</p>
+				<p className="text-sm">
+					When you're ready, click Generate GIF. It may take upwards of 45 seconds.
+				</p>
+				<p className="text-sm"><u>Developer&apos;s Note:</u></p>
 				<p className="text-sm">
 					This tool&apos;s mobile functionalty is lacking and only consistently performs on iOS in Safari.
 				</p>
