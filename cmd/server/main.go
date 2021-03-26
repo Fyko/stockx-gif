@@ -24,7 +24,7 @@ func main() {
 	app.Use(logger.New(logger.Config{
 		TimeZone: "America/Denver",
 	}))
-	prometheus := fiberprometheus.New("stockx_gif")
+	prometheus := fiberprometheus.NewWith("stockx_gif_api", "stockx_gif", "http")
 	prometheus.RegisterAt(app, "/api/metrics")
 	app.Use(prometheus.Middleware)
 
