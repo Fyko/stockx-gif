@@ -10,7 +10,7 @@ export default function Home() {
 			<Head>StockX GIF Generator</Head>
 
 			<div className="mb-5 w-full flex justify-center">
-				<Image src="/banner.png" height={600} width={230} className="shadow-sm" loading="eager" />
+				<Image src="/banner.png" height={230} width={600} className="shadow-sm" loading="eager" />
 			</div>
 			<h2 className="text-center font-bold text-4x1" style={{ fontWeight: 900 }}>
 				StockX Product GIF Generator
