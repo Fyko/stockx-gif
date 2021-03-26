@@ -22,13 +22,14 @@ var uri = url.URL{
 type TruncatedHit struct {
 	ID   string `json:"id"`
 	Name string `json:"name"`
+	Slug string `json:"slug"`
 }
 
 func TruncateResponse(data AlgolaQueryResponse) []TruncatedHit {
 	var hits []TruncatedHit
 	for _, hit := range data.Hits {
 		if len(hit.ID) > 0 {
-			hits = append(hits, TruncatedHit{ID: hit.ID, Name: hit.Name})
+			hits = append(hits, TruncatedHit{ID: hit.ID, Name: hit.Name, Slug: hit.URL})
 		}
 	}
 

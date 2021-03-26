@@ -9,7 +9,8 @@ import (
 )
 
 type GenerateGifOptions struct {
-	Images []string `json:"images"`
+	ID      string `json:"id"`
+	Preview bool   `json:"preview"`
 }
 
 type FetchAlgoliaDataOptions struct {
@@ -30,7 +31,14 @@ func GenerateGIF(c *fiber.Ctx) error {
 		return c.SendStatus(fiber.StatusBadRequest)
 	}
 
-	gif, err := gifutil.WriteGIF(options.Images)
+	product, err := stockx.FetchStockXProductData(options.ID)
+	if err != nil {
+		return err
+	}
+
+	images := gifutil.Prepare360Images(product.Product.Media.The360, options.Preview)
+
+	gif, err := gifutil.WriteGIF(images)
 	if err != nil {
 		return err
 	}

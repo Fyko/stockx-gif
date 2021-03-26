@@ -2,6 +2,7 @@ package gifutil
 
 import (
 	"bytes"
+	"fmt"
 	"image/gif"
 	"strings"
 
@@ -34,12 +35,18 @@ func WriteGIF(urls []string) (*bytes.Buffer, error) {
 	return out, nil
 }
 
-func Prepare360Images(images []string) []string {
+func Prepare360Images(images []string, preview bool) []string {
 	var mutated []string
 
 	for _, image := range images {
 		split := strings.Split(image, "?")
-		mutated = append(mutated, split[1]+"?w=1280&fm=jpg")
+		mutated = append(mutated, fmt.Sprintf("%v?w=%v&fm=jpg", split[0], func() int {
+			if preview {
+				return 512
+			} else {
+				return 1280
+			}
+		}()))
 	}
 
 	return mutated
