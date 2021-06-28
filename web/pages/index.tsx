@@ -1,12 +1,12 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import { faEye, faRocket } from '@fortawesome/free-solid-svg-icons';
-import { PreviewButton, GenerateButton } from '../components';
+import { faDatabase, faEye, faRocket } from '@fortawesome/free-solid-svg-icons';
+import { PreviewButton, GenerateButton, StaticButton } from '../components';
 import { ToastContainer } from 'react-toastify';
 
 export default function Home() {
 	const element = (
-		<div className="max-w-xl mx-auto mt-20 p-10 justify-center items-center">
+		<div className="max-w-2xl mx-auto mt-20 p-10 justify-center items-center">
 			<Head>StockX GIF Generator</Head>
 
 			<div className="mb-5 w-full flex justify-center">
@@ -38,21 +38,20 @@ export default function Home() {
 			<div className="items-center justify-center pt-5 space-x-3 w-full flex">
 				<PreviewButton icon={faEye} content={'Generate Preview'} />
 				<GenerateButton icon={faRocket} content={'Generate GIF'} />
+				<StaticButton icon={faDatabase} content={'Generate Static GIF URL'} />
 			</div>
 			<div className="p-5 rounded-md bg-gradient-to-tr from-gray-800 to-gray-700 space-y-4 shadow-md mt-10">
 				<p className="text-sm">
 					<u>Usage:</u>
 				</p>
-				<p className="text-sm">
-					Input the URL to a StockX product in the textbox above.
-				</p>
+				<p className="text-sm">Input the URL to a StockX product in the textbox above.</p>
 				<p className="text-sm">
 					To generate a preview, click the Generate Preview button and the resulting GIF will be smaller.
 				</p>
+				<p className="text-sm">When you&apos;re ready, click Generate GIF. It may take upwards of 45 seconds.</p>
 				<p className="text-sm">
-					When you're ready, click Generate GIF. It may take upwards of 45 seconds.
+					<u>Developer&apos;s Note:</u>
 				</p>
-				<p className="text-sm"><u>Developer&apos;s Note:</u></p>
 				<p className="text-sm">
 					This tool&apos;s mobile functionalty is lacking and only consistently performs on iOS in Safari.
 				</p>

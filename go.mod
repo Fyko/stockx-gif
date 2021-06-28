@@ -4,6 +4,7 @@ go 1.13
 
 require (
 	github.com/ansrivas/fiberprometheus/v2 v2.1.1
+	github.com/aws/aws-sdk-go v1.38.68
 	github.com/gofiber/fiber v1.14.6
 	github.com/gofiber/fiber/v2 v2.6.0
 	github.com/golang/protobuf v1.5.1 // indirect

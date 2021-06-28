@@ -1,11 +1,12 @@
+/* eslint-disable no-alert */
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-import { generateGif, queryAlgolia } from '../util';
+import { fetchStatic, queryAlgolia } from '../util';
 
-export function GenerateButton({ icon: _icon, content: _content }: { icon: IconProp; content: string }) {
+export function StaticButton({ icon: _icon, content: _content }: { icon: IconProp; content: string }) {
 	const [disabled, setDisabled] = useState(false);
 	const [icon, setIcon] = useState(_icon);
 	const [spin, setSpin] = useState(false);
@@ -21,7 +22,7 @@ export function GenerateButton({ icon: _icon, content: _content }: { icon: IconP
 	const onClick = async () => {
 		setDisabled(true);
 
-		setContent('Generating GIF...');
+		setContent('Fetching static URL...');
 		setIcon(faSpinner);
 		setSpin(true);
 
@@ -33,30 +34,26 @@ export function GenerateButton({ icon: _icon, content: _content }: { icon: IconP
 		}
 
 		const query = await queryAlgolia(test.groups.slug);
-
 		if (!query.length) {
 			cleanup();
 			return toast.error('Product not found!');
 		}
 
 		const hit = query[0];
-		const gif = await generateGif(hit.id);
-		if (gif.status === 409) {
-			cleanup();
-			return toast.error('The product does not have 360 image support!');
+		const exists = await fetchStatic(hit.id, false, true);
+
+		if (exists.status === 404) {
+			setContent('Generating static URL...');
+			const location = await fetchStatic(hit.id, false, false);
+			const out = await location.text();
+			alert(out);
+		} else {
+			const out = await exists.text();
+			alert(out);
 		}
 
-		const url = URL.createObjectURL(await gif.blob());
-		const a = document.createElement('a');
-		a.href = url;
-		a.download = `${hit.slug}.gif`;
-		document.body.appendChild(a);
-		a.click();
-		a.remove();
-		URL.revokeObjectURL(url);
-
 		cleanup();
-		return toast.success('Successfully generated and downloaded GIF!');
+		return toast.success('Successfully fetched static GIF URL!');
 	};
 
 	return (

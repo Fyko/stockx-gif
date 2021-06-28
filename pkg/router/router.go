@@ -15,5 +15,6 @@ func SetupRoutes(app *fiber.App) {
 	app.Post("/generate", handler.GenerateGIF)
 	app.Get("/query_algolia", handler.FetchAlgoliaData)
 	app.Get("/query_stockx", handler.FetchStockXData)
+	app.Get("/static", handler.ReturnS3URL)
 	app.Use("/ping", handler.Ping)
 }
