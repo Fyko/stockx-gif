@@ -42,7 +42,7 @@ func Prepare360Images(images []string, preview bool) []string {
 		split := strings.Split(image, "?")
 		mutated = append(mutated, fmt.Sprintf("%v?w=%v&fm=jpg", split[0], func() int {
 			if preview {
-				return 512
+				return 256
 			} else {
 				return 1280
 			}
