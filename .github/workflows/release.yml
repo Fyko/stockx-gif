@@ -1,9 +1,14 @@
+# Some of this code is property of Hop Inc.
+# via the MPL-2.0 license https://github.com/hopinc/cli
 name: Release
 
 on:
   push:
     tags:
       - 'v*'
+
+permissions:
+  contents: write
 
 jobs:
   draft-release:
@@ -84,12 +89,12 @@ jobs:
         if: matrix.os == 'windows-latest'
         run: |
           cd dist
-          7z a stockx-gif-${{ maxtrix.os }}.zip stockx-gif.exe
+          7z a stockx-gif-${{ maxtrix.os }}.zip stockx-gif
 
       - name: Upload tarball artifact
         uses: actions/upload-artifact@v3
         with:
-          name: bin-${{ matrix.os }}
+          name: stockx-gif-${{ matrix.os }}
           path: dist/stockx-gif-${{ matrix.os }}.${{ matrix.os == 'windows-latest' && 'zip' || 'tar.gz' }}
 
   docker:
@@ -104,7 +109,7 @@ jobs:
         uses: redhat-actions/buildah-build@v2
         with:
           image: Fyko/stockx-gif
-          tags: latest ${{ }} ${{ github.sha }}
+          tags: latest ${{ steps.tag.outputs.tag_name }} ${{ github.sha }}
           dockerfiles: |
             ./Dockerfile
           build-args: |
