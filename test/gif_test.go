@@ -3,7 +3,7 @@ package gifutil
 import (
 	"testing"
 
-	"stockx-gif-next/internal/gifutil"
+	"github.com/Fyko/stockx-gif/internal/gifutil"
 )
 
 var urls = []string{

@@ -1,13 +1,13 @@
-FROM golang:1.16-alpine AS build
+FROM golang:1.19-alpine AS build
 
-WORKDIR /go/src/github.com/fyko/stockx-gif-next/ 
+WORKDIR /go/src/github.com/fyko/stockx-gif/ 
 COPY . .
 RUN go mod download
-RUN go build -o build/server cmd/server/main.go   
+RUN go build -o dist/stockx-gif main.go   
 
 FROM alpine:latest  
 RUN apk --no-cache add ca-certificates
 WORKDIR /go/src/github.com/fyko/stockx-gif-next/app
-COPY --from=build /go/src/github.com/fyko/stockx-gif-next/build/server .
+COPY --from=build /go/src/github.com/fyko/stockx-gif/dist/stockx-gif .
 
-CMD ["./server"]
+ENTRYPOINT [ "./stockx-gif" ]

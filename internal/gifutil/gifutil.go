@@ -6,8 +6,8 @@ import (
 	"image/gif"
 	"strings"
 
-	"stockx-gif-next/internal/download"
-	"stockx-gif-next/pkg/logger"
+	"github.com/Fyko/stockx-gif/internal/download"
+	"github.com/Fyko/stockx-gif/pkg/logger"
 )
 
 var log = logger.CreateLogger()
@@ -35,18 +35,13 @@ func WriteGIF(urls []string) (*bytes.Buffer, error) {
 	return out, nil
 }
 
-func Prepare360Images(images []string, preview bool) []string {
+// write docs for this go function
+func Prepare360Images(images []string, width int) []string {
 	var mutated []string
 
 	for _, image := range images {
 		split := strings.Split(image, "?")
-		mutated = append(mutated, fmt.Sprintf("%v?w=%v&fm=jpg", split[0], func() int {
-			if preview {
-				return 256
-			} else {
-				return 1280
-			}
-		}()))
+		mutated = append(mutated, fmt.Sprintf("%v?w=%v&fm=jpg", split[0], width))
 	}
 
 	return mutated

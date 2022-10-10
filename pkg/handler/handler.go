@@ -2,10 +2,11 @@ package handler
 
 import (
 	"net/http"
-	"stockx-gif-next/internal/algolia"
-	"stockx-gif-next/internal/gifutil"
-	"stockx-gif-next/internal/s3"
-	"stockx-gif-next/internal/stockx"
+
+	"github.com/Fyko/stockx-gif/internal/algolia"
+	"github.com/Fyko/stockx-gif/internal/gifutil"
+	"github.com/Fyko/stockx-gif/internal/s3"
+	"github.com/Fyko/stockx-gif/internal/stockx"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -56,7 +57,15 @@ func GenerateGIF(c *fiber.Ctx) error {
 		return c.SendStatus(409)
 	}
 
-	images := gifutil.Prepare360Images(product.Product.Media.The360, options.Preview)
+	width := func() int {
+		if options.Preview {
+			return 256
+		} else {
+			return 1280
+		}
+	}()
+
+	images := gifutil.Prepare360Images(product.Product.Media.The360, width)
 
 	gif, err := gifutil.WriteGIF(images)
 	if err != nil {
@@ -122,7 +131,15 @@ func ReturnS3URL(c *fiber.Ctx) error {
 		return c.SendStatus(409)
 	}
 
-	images := gifutil.Prepare360Images(product.Product.Media.The360, options.Preview)
+	width := func() int {
+		if options.Preview {
+			return 256
+		} else {
+			return 1280
+		}
+	}()
+
+	images := gifutil.Prepare360Images(product.Product.Media.The360, width)
 
 	gif, err := gifutil.WriteGIF(images)
 	if err != nil {
