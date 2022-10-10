@@ -28,4 +28,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: stockx-gif-${{ matrix.os }}
-          path: dist/stockx-gif${{ matrix.os == 'windows-latest' && '.exe' || '' }}
+          path: dist/stockx-gif
