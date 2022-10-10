@@ -99,6 +99,7 @@ jobs:
 
   docker:
     name: Docker
+    needs: ["draft-release"]
     runs-on: ubuntu-latest
 
     steps:
@@ -109,7 +110,7 @@ jobs:
         uses: redhat-actions/buildah-build@v2
         with:
           image: Fyko/stockx-gif
-          tags: latest ${{ steps.tag.outputs.tag_name }} ${{ github.sha }}
+          tags: latest ${{ needs.draft-release.outputs.tag_name }} ${{ github.sha }}
           dockerfiles: |
             ./Dockerfile
           build-args: |
