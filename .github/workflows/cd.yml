@@ -1,6 +1,9 @@
 name: Docker
 
-on: [push, pull_request]
+on: 
+  push:
+    tags-ignore:
+      - "v*"
 
 jobs:
   docker:
