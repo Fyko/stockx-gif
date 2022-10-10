@@ -83,13 +83,13 @@ jobs:
         if: matrix.os != 'windows-latest'
         run: |
           cd dist
-          tar -cvzf stockx-gif-${{ maxtrix.os }}.tar.gz stockx-gif
+          tar -cvzf stockx-gif-${{ matrix.os }}.tar.gz stockx-gif
 
       - name: Create tarball [Windows]
         if: matrix.os == 'windows-latest'
         run: |
           cd dist
-          7z a stockx-gif-${{ maxtrix.os }}.zip stockx-gif
+          7z a stockx-gif-${{ matrix.os }}.zip stockx-gif
 
       - name: Upload tarball artifact
         uses: actions/upload-artifact@v3
