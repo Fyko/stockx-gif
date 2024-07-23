@@ -5,7 +5,7 @@ COPY . .
 RUN go mod download
 RUN go build -o dist/stockx-gif main.go   
 
-FROM alpine:latest  
+FROM alpine:3.20  
 RUN apk --no-cache add ca-certificates
 WORKDIR /go/src/github.com/fyko/stockx-gif-next/app
 COPY --from=build /go/src/github.com/fyko/stockx-gif/dist/stockx-gif .
